@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <packegeRunId>20</packegeRunId>
+  <freeWeight>1</freeWeight>
+  <lightCarry>2</lightCarry>
+  <mediumCarry>2.5</mediumCarry>
+  <heavyCarry>3</heavyCarry>
+  <chargingRate>10</chargingRate>
+</config>

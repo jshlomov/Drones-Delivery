@@ -1,0 +1,163 @@
+﻿<Window x:Class="PL.PackagesListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+                Title="DroneListWindow" Height="500" Width="870">
+
+    <Grid x:Name="main">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--acount-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#FF5D6B99">
+            <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                <Button x:Name="refresh" Grid.Row="0" Grid.Column="1" Width="25" Height="25" Margin="2" Click="refresh_Click">
+                    <materialDesign:PackIcon Kind="Refresh" Background="#FFF0F0F0"/>
+                </Button>
+                <Button x:Name="goBackButton" Grid.Row="0" Grid.Column="1" Width="25" Height="25" Margin="2" Click="goBackButton_Click">
+                    <materialDesign:PackIcon Kind="ExitToApp" Background="#FFF0F0F0"/>
+                </Button>
+            </WrapPanel>
+        </Grid>
+
+        <!--Deshbourd-->
+        <Grid Grid.Row="1" Grid.Column="0" Background="#FFC6D8E8">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" ></RowDefinition>
+                <RowDefinition Height="3*" ></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--account-->
+            <Grid Grid.Row="0" Margin="2">
+                <Rectangle Margin="55, 10"  Fill="#FFEAF0F6" RadiusY="40" RadiusX="40" >
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <materialDesign:PackIcon Kind="Account" Width="72" Height="42" Margin="0,13,0,0" HorizontalAlignment="Center"/>
+                <TextBlock Text="admin" Margin="0,52,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20"/>
+            </Grid>
+
+            <!--options -2 -->
+            <StackPanel Grid.Row="1">
+                <Label Content="אפשרויות סינון" Height="35" Width='110' HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                <WrapPanel Margin="5,5" HorizontalAlignment="Center">
+                    <ComboBox x:Name="priorityComboBox" SelectionChanged="priorityComboBox_SelectionChanged" Width="120" Height="25" />
+                    <Label Content=":עדיפות" Height="30" Width="60" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel Margin="5,5" HorizontalAlignment="Center">
+                    <ComboBox x:Name="weightComboBox" SelectionChanged="weightComboBox_SelectionChanged" Width="120" Height="25" />
+                    <Label Content=":משקל"  Height="30" Width="60" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel Margin="5,5" HorizontalAlignment="Center">
+                    <DatePicker x:Name="from" Height="30" Width="140" SelectedDateChanged="from_SelectedDateChanged"/>
+                    <Label Content=":מ" Grid.Column="0" Height="30" Width="30" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel Margin="5,5" HorizontalAlignment="Center">
+                    <DatePicker x:Name="to" Height="30" Width="140" Grid.Row="1" SelectedDateChanged="to_SelectedDateChanged"/>
+                    <Label Content=":עד" Grid.Column="0" Height="30" Width="30" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel Margin="5,5" HorizontalAlignment="Center">
+                    <ComboBox x:Name="groupNameComboBox" Width="120" Height="25" SelectionChanged="groupNameComboBox_SelectionChanged"/>
+                    <Label Content=":סדר לפי"  Height="30" Width="70" FontSize="15" />
+                </WrapPanel>
+            </StackPanel>
+
+            <!--Add Delete or Update-->
+            <Grid Grid.Row="2">
+                <Button x:Name="AddPackage"  Content="הוספה" Click="AddPackage_Click" Margin="60,10"/>
+            </Grid>
+        </Grid>
+
+        <ListView x:Name="PackagesListView" MouseDoubleClick="PackagesListView_MouseDoubleClick"  FontWeight="Bold" FontSize="14" SelectionChanged="PackagesListView_SelectionChanged"  HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="2">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF61B32E"/>
+                    <GradientStop Color="#FF978EE7" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" >
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="50" />
+                    <GridViewColumn Header="Sender Name" DisplayMemberBinding="{Binding SenderName}" Width="95" />
+                    <GridViewColumn Header="Target Name" DisplayMemberBinding="{Binding TargetName}" Width="95" />
+                    <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" Width="85" />
+                    <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding Priority}" Width="90" />
+                    <GridViewColumn Header="created" DisplayMemberBinding="{Binding Creation}" Width="175" />
+                    <GridViewColumn Header="assigned" DisplayMemberBinding="{Binding assigning}" Width="175" />
+                    <GridViewColumn Header="picked up" DisplayMemberBinding="{Binding PickedUp}" Width="175" />
+                    <GridViewColumn Header="delivered" DisplayMemberBinding="{Binding Delivered}" Width="175" />
+                    <GridViewColumn Header="del" Width="30">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="delete" Click="delete_Click" Background="#FFFF2900" >
+                                    <materialDesign:PackIcon Kind="Delete" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Width="20" Height="20" Background="#FFFF2900"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+
+            <!--<ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding SenderName}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>-->
+
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}"  />
+                                                    <TextBlock Text="{Binding ItemCount}"  Foreground="Gray" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text=" record(s)" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+
+
+        </ListView>
+    </Grid>
+
+</Window>

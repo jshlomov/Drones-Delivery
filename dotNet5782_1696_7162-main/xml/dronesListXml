@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Drone>
+    <ID>4332</ID>
+    <Model>1761</Model>
+    <MaxWeight>Lite</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>2906</ID>
+    <Model>A 2019</Model>
+    <MaxWeight>heavy</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>4195</ID>
+    <Model>B 2015</Model>
+    <MaxWeight>Medium</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>7740</ID>
+    <Model>B 2014</Model>
+    <MaxWeight>heavy</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>9533</ID>
+    <Model>C 2012</Model>
+    <MaxWeight>Medium</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>9349</ID>
+    <Model>C 2012</Model>
+    <MaxWeight>Lite</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>2661</ID>
+    <Model>C 2012</Model>
+    <MaxWeight>heavy</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>544</ID>
+    <Model>1515</Model>
+    <MaxWeight>Medium</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+  <Drone>
+    <ID>15545</ID>
+    <Model>dfddf</Model>
+    <MaxWeight>Medium</MaxWeight>
+    <Deleted>false</Deleted>
+  </Drone>
+</ArrayOfDrone>

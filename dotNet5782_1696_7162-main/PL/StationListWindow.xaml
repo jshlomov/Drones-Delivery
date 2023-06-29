@@ -1,0 +1,77 @@
+﻿<Window x:Class="PL.StationListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="StationListWindow" Height="640" Width="700">
+
+
+    <Grid x:Name="MainGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" 
+              Height="auto" Grid.Row="0" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Button x:Name="AddStation"  Content="הוספה" Grid.Column="3" HorizontalAlignment="Stretch" Margin="50,15" Click="AddStation_Click"/>
+            <Label Content=":סדר לפי" Grid.Column="2" Height="30" Width="70" FontSize="15" Margin="115,50,165,9" Grid.ColumnSpan="2" />
+            <ComboBox x:Name="groupNameComboBox" Width="120" Height="25" Margin="167,53,63,11" Grid.Column="1" SelectionChanged="groupNameComboBox_SelectionChanged" Grid.ColumnSpan="2"/>
+            <Button x:Name="refresh" Content="refresh" Grid.Column="0" Margin="50,20" Click="refresh_Click"/>
+        </Grid>
+
+
+        <ListView x:Name="StationsListView" MouseDoubleClick="StationsListView_MouseDoubleClick"  FontWeight="Bold" FontSize="14" SelectionChanged="StationsListView_SelectionChanged"  HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,89,0,0" Width="690">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF61B32E"/>
+                    <GradientStop Color="#FF978EE7" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" >
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="100" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150" />
+                    <GridViewColumn Header="Free Slotes" DisplayMemberBinding="{Binding FreeChargeSlots}" Width="150" />
+                    <GridViewColumn Header="Taken Slots" DisplayMemberBinding="{Binding TakenChargeSlots}" Width="150" />
+                    <GridViewColumn Header="del" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="delete" Click="delete_Click" Background="#FFFF2900" >
+                                    <materialDesign:PackIcon Kind="Delete" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Width="20" Height="20" Background="#FFFF2900"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+
+        </ListView>
+
+    </Grid>
+</Window>

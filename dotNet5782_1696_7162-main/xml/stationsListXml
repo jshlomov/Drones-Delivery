@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Station>
+    <ID>1</ID>
+    <Name>Bursa</Name>
+    <FreeChargeSlots>8</FreeChargeSlots>
+    <TheLocation>
+      <Longitude>34.801305</Longitude>
+      <Latitude>32.083901</Latitude>
+    </TheLocation>
+    <Deleted>false</Deleted>
+  </Station>
+  <Station>
+    <ID>2</ID>
+    <Name>Azrieli</Name>
+    <FreeChargeSlots>7</FreeChargeSlots>
+    <TheLocation>
+      <Longitude>34.792488</Longitude>
+      <Latitude>32.074898</Latitude>
+    </TheLocation>
+    <Deleted>false</Deleted>
+  </Station>
+  <Station>
+    <ID>3</ID>
+    <Name>Tahana Mercazit</Name>
+    <FreeChargeSlots>8</FreeChargeSlots>
+    <TheLocation>
+      <Longitude>34.780118</Longitude>
+      <Latitude>32.05623</Latitude>
+    </TheLocation>
+    <Deleted>false</Deleted>
+  </Station>
+</ArrayOfStation>

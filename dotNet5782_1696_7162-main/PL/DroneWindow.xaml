@@ -1,0 +1,302 @@
+﻿<Window x:Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        x:Class="PL.DroneWindow"
+        mc:Ignorable="d"
+        Title="Window1" Height="470" Width="800">
+
+    <Grid x:Name="main">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#FF5D6B99">
+            <Button x:Name="goBackButton" Grid.Row="0" Grid.Column="1" Width="25" Height="25" HorizontalAlignment="Right" Margin="4,1" Click="goBackButton_Click">
+                <materialDesign:PackIcon Kind="ExitToApp" Background="#FFF0F0F0"/>
+            </Button>
+        </Grid>
+
+
+        <!--Deshbourd-->
+        <Grid Grid.Row="1" Grid.Column="0" Background="#FFC6D8E8">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*" ></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+                <RowDefinition Height="1.7*" ></RowDefinition>
+                <RowDefinition Height="0.8*" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--account-->
+            <Grid Grid.Row="0" Margin="2">
+                <Rectangle Margin="40, 15"  Fill="#FFEAF0F6" RadiusY="40" RadiusX="40" >
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <materialDesign:PackIcon Kind="Account" Width="73" Height="42" Margin="10" HorizontalAlignment="Center"/>
+                <TextBlock Text="admin" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20"/>
+            </Grid>
+
+            <!--options -1 -->
+            <StackPanel Grid.Row="1">
+                <Button x:Name="DroneButton"  HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" Height="35" Width="150" Click="DroneButton_Click">
+                    <Grid Height="20" Width="140">
+                        <materialDesign:PackIcon Kind="Drone" Height="15" Width="15"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock Text="Drone" HorizontalAlignment="Center" />
+                    </Grid>
+                </Button>
+                <Button x:Name="PackageButton"  HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" Height="35" Width="150" Click="PackageButton_Click">
+                    <Grid Height="20" Width="140">
+                        <materialDesign:PackIcon Kind="PackageVariant" HorizontalAlignment="Left" VerticalAlignment="Center" Width="15" Height="15"/>
+                        <TextBlock Text="Package" HorizontalAlignment="Center" />
+                        <materialDesign:PackIcon Kind="Man" HorizontalAlignment="Right" VerticalAlignment="Center" Width="15" Height="15"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+            <!--options -2 -->
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="charging and acting options" HorizontalAlignment="Center" Margin="2"/>
+                <Button x:Name="chargingButton" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  Height="35" Width="150" Click="chargingButton_Click"/>
+                <Button x:Name="actWithPackage" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  Height="35" Width="150" Click="actWithPackageBatton_Click" />
+                <TextBlock x:Name="time" Text="time of charging" HorizontalAlignment="Center" Margin="2"/>
+                <TextBox x:Name="time1" Width="150" Height="25"></TextBox>
+            </StackPanel>
+
+            <!--Add Delete or Update-->
+            <Grid Grid.Row="3">
+                <Button Name="deleteDrone" Click="deleteDrone_Click" Background="#FFFF2900" BorderBrush="#FFFF2900" Height="25" Width="25" VerticalAlignment="Top" Margin="88,50,87,0">
+                    <materialDesign:PackIcon Kind="Delete" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Width="20" Height="20" Background="#FFFF2900"/>
+                </Button>
+                <Button x:Name="AddOrUpdateButton" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" Click="AddOrUpdateButton_Click" Height="35" Width="150"/>
+            </Grid>
+
+        </Grid>
+        <!--//Deshbourd-->
+
+
+        <!--drones grid-->
+        <Grid x:Name="DroneGrid" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <!--Drone data-->
+
+            <Grid x:Name="Grid11" Grid.Column="0">
+
+                <Rectangle Margin="20, 15"  Fill="#FFEAF0F6" RadiusY="20" RadiusX="20" >
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+
+                <Grid Margin="20, 15">
+                    <Grid x:Name="UpdateDrone" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20, 70" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:"/>
+                        <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+                        <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Max Weight:"/>
+                        <ComboBox x:Name="maxWeightComboBox" Width="120" VerticalAlignment="Center" SelectedItem="{Binding MaxWeight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" />
+                        <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Model:"/>
+                        <TextBox x:Name="modelTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" TextChanged="modelTextBox_TextChanged"/>
+                        <Label x:Name="statusLabel" VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Status:"/>
+                        <ComboBox x:Name="statusComboBox"  Width="120" VerticalAlignment="Center" SelectedItem="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+                        <Label x:Name="batteryLabel" VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Battery:"/>
+                        <TextBox x:Name="batteryTextBox" Width="120" VerticalAlignment="Center"  MaxLength="4" Text="{Binding Battery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, StringFormat={}{0:N2}}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+                    </Grid>
+
+                    <TextBlock Text="Drone" HorizontalAlignment="Left" FontFamily="Champagne &amp; Limousines" Margin="30" VerticalAlignment="Top" Foreground="Gray" FontSize="16" FontWeight="Bold"/>
+                    <Viewbox x:Name="BatteryBox" Width="60" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30, 20">
+                        <StackPanel Orientation="Vertical">
+                            <Border Background="#00c000" CornerRadius="2,2,0,0" Padding="2" Width="20" Height="7" Margin="0,-2,0,-2"/>
+                            <Border BorderBrush="#00c000" BorderThickness="2" CornerRadius="5" Padding="2" Width="50" Height="100">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Border Height="{Binding Battery}" Grid.Row="1" Background="#00c000" CornerRadius="2" Padding="2" />
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Viewbox>
+                </Grid>
+            </Grid>
+
+            <ListView x:Name="ListStations" Grid.Column="1" Margin="20" SelectionChanged="ListStations_SelectionChanged"/>
+        </Grid>
+
+
+        <Grid x:Name="PackageGrid" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="Grid22" Grid.Column="0">
+
+                <Rectangle Margin="25, 20"  Fill="#FFEAF0F6" RadiusY="20" RadiusX="20" >
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+
+                <Grid x:Name="grid2" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBox x:Name="iDTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Package.ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="priorityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Package.Priority, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Situation:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                    <CheckBox x:Name="situationCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Package.Situation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                    <Label Content="Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                    <TextBox x:Name="weightTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Package.Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                    <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Package.PickingUp.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                    <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Package.PickingUp.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                    <TextBox x:Name="distanceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Package.Distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                </Grid>
+
+                <TextBlock Text="Package" HorizontalAlignment="Left" Height="30" Width="70" FontFamily="Champagne &amp; Limousines" Margin="45, 40" VerticalAlignment="Top" Foreground="Gray" FontSize="18" FontWeight="Bold"/>
+                <Grid Width="35" Height="50" Background="#FFFFAF24" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,52,0">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
+                    </Grid.Effect>
+                    <Button x:Name="goToPackage" Click="goToPackage_Click" Height="25" Width="25" VerticalAlignment="Bottom" BorderBrush="#FFFFAF24" Background="#FFFFAF24">
+                        <materialDesign:PackIcon Kind="OpenInNew" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1" Foreground="White" Width="20" Height="20"/>
+                    </Button>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="Grid33" Grid.Row="0">
+
+                    <Rectangle Margin="20, 15"  Fill="#FFEAF0F6" RadiusY="20" RadiusX="20" >
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+
+                    <Grid x:Name="grid3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Margin="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="iDTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Package.Sender.ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Package.Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="latitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="3" Text="{Binding Package.PickingUp.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                        <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox x:Name="longitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="4" Text="{Binding Package.PickingUp.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    <TextBlock Text="Sender" HorizontalAlignment="Left" Height="30" Width="70" FontFamily="Champagne &amp; Limousines" Margin="54,32,0,0" VerticalAlignment="Top" Foreground="Gray" FontSize="18" FontWeight="Bold"/>
+                    <Grid Width="35" Height="40" Background="#FFFFAF24" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,50,0">
+                        <Grid.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Grid.Effect>
+                        <Button x:Name="goToSendr" Click="goToSendr_Click" Height="25" Width="25" VerticalAlignment="Bottom" BorderBrush="#FFFFAF24" Background="#FFFFAF24">
+                            <materialDesign:PackIcon Kind="OpenInNew" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1" Foreground="White" Width="20" Height="20"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+
+                <Grid x:Name="Grid44" Grid.Row="1" >
+
+                    <Rectangle Margin="20, 15"  Fill="#FFEAF0F6" RadiusY="20" RadiusX="20" >
+                        <Rectangle.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <Grid x:Name="grid4" HorizontalAlignment="Center" Margin="15" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="iDTextBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Package.Target.ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBox x:Name="nameTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Package.Target.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="latitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Package.Delivering.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox x:Name="longitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Package.Delivering.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    </Grid>
+                    <TextBlock Text="Target" HorizontalAlignment="Left" Height="30" Width="70" FontFamily="Champagne &amp; Limousines" Margin="54,32,0,0" VerticalAlignment="Top" Foreground="Gray" FontSize="18" FontWeight="Bold"/>
+                    <Grid Width="35" Height="40" Background="#FFFFAF24" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,50,0">
+                        <Grid.Effect>
+                            <DropShadowEffect BlurRadius="20" Color="#FFECECEC" RenderingBias="Quality" ShadowDepth="1"/>
+                        </Grid.Effect>
+                        <Button x:Name="goToTarget" Click="goToTarget_Click" Height="25" Width="25" VerticalAlignment="Bottom" BorderBrush="#FFFFAF24" Background="#FFFFAF24">
+                            <materialDesign:PackIcon Kind="OpenInNew" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1" Foreground="White" Width="20" Height="20"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
